@@ -1,5 +1,6 @@
 package com.wushen.baseservice.exception;
 
+import com.wushen.commonutils.ExceptionUtil;
 import com.wushen.commonutils.R;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -49,7 +50,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(WuShenException.class)
     @ResponseBody
     /**
-     * @Description:ArithmeticException异常出错方法
+     * @Description:自定义异常出错方法
      * @Author: wushen
      * @Email:993108679@qq.com
      * @Version: v1.00
@@ -59,7 +60,7 @@ public class GlobalExceptionHandler {
      * @Throws
      */
     public R error(WuShenException e){
-        log.error(e.getMsg());
+        log.error(ExceptionUtil.getMessage(e));
         e.printStackTrace();
         return R.error().code(e.getCode()).message(e.getMsg());
     }

@@ -10,6 +10,7 @@ import com.wushen.eduservice.service.EduTeacherService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -28,6 +29,8 @@ import java.util.List;
 @Api(value = "讲师",tags = "讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
+@CrossOrigin
+@Slf4j
 public class EduTeacherController {
     @Autowired
     private EduTeacherService eduTeacherService;
@@ -42,6 +45,7 @@ public class EduTeacherController {
     public R removeTeacherById(@ApiParam(name = "id",value = "讲师id")
                                @PathVariable String id){
         boolean flag = eduTeacherService.removeById(id);
+//        log.info(id);
         if (flag){
             return R.ok();
         }else{
@@ -129,7 +133,6 @@ public class EduTeacherController {
                                @RequestBody EduTeacher eduTeacher){
         eduTeacher.setId(id);
         boolean update = eduTeacherService.updateById(eduTeacher);
-        System.out.println("测试代码上传");
         if (update){
             return R.ok();
         }else{
