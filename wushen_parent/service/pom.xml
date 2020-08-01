@@ -86,6 +86,7 @@
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
         </dependency>
+
         <!--xls操作Excel的表格的,版本来源于wushen_parent;
         具体配合EasyExcel使用;已在service_edu引入-->
         <dependency>
@@ -96,6 +97,7 @@
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
         </dependency>
+        <!--文件上传组件-->
         <dependency>
             <groupId>commons-fileupload</groupId>
             <artifactId>commons-fileupload</artifactId>

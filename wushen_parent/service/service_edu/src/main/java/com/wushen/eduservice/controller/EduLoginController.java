@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
  @author wushen
  @create 2020-07-15 7:46
  */
-@Api(value = "用户登录",tags = "用户登录管理")
+@Api(value = "用户登录",tags = "登录管理")
 @RestController
 //此处必须包含user
 @RequestMapping("/eduservice/user")
