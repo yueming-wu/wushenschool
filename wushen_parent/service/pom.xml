@@ -16,6 +16,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>service_edu</module>
+        <module>service_oss</module>
     </modules>
     <!--有具体依赖则使用无则使用父依赖-->
     <dependencies>
