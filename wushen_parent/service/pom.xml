@@ -17,6 +17,7 @@
     <modules>
         <module>service_edu</module>
         <module>service_oss</module>
+        <module>service_vod</module>
     </modules>
     <!--有具体依赖则使用无则使用父依赖-->
     <dependencies>
@@ -43,15 +44,15 @@
             <artifactId>spring-cloud-starter-netflix-hystrix</artifactId>
         </dependency>-->
         <!--服务注册-->
-        <!--<dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-        </dependency>-->
+        </dependency>
         <!-- 服务调用-->
-       <!-- <dependency>
+        <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-openfeign</artifactId>
-        </dependency>-->
+        </dependency>
         <!--web工程启动器:如果再建子模块则是web模块-->
         <dependency>
             <groupId>org.springframework.boot</groupId>

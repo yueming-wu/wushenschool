@@ -2,6 +2,7 @@ package com.wushen.eduservice.controller;
 
 
 import com.wushen.commonutils.R;
+import com.wushen.eduservice.client.VodClient;
 import com.wushen.eduservice.entity.EduVideo;
 import com.wushen.eduservice.service.EduVideoService;
 import io.swagger.annotations.Api;
@@ -25,8 +26,8 @@ import org.springframework.web.bind.annotation.*;
 public class EduVideoController {
     @Autowired
     private EduVideoService eduVideoService;
-    /*@Autowired
-    private VodClient vodClient;*/
+    @Autowired
+    private VodClient VodClient;
     @ApiOperation(value = "添加小节",notes = "根据小节表单添加小节")
     @PostMapping("/addVideo")
     public R addVideo(@ApiParam(name = "eduVideo",value = "小节",required = true)
@@ -46,7 +47,7 @@ public class EduVideoController {
         if (videoSourceId != null) {
             eduVideoService.removeById(videoSourceId);
         }
-//        vodClient.deleteVideoByVideoId(id);
+        VodClient.deleteVideoByVideoId(id);
         eduVideoService.removeById(id);
         return R.ok();
     }
