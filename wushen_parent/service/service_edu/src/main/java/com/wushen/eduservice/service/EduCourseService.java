@@ -6,6 +6,7 @@ import com.wushen.eduservice.entity.query.CourseInfoVO;
 import com.wushen.eduservice.entity.query.CoursePublishVo;
 import com.wushen.eduservice.entity.query.CourseQueryVO;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -29,4 +30,6 @@ public interface EduCourseService extends IService<EduCourse> {
     Map<String, Object> getCoursesOnConditionByPage(Long page, Long limit, CourseQueryVO courseQueryVO);
 
     void deleteCourseInfosByCourseId(String courseId);
+
+    List<EduCourse> selectHotCourses();
 }

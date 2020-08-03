@@ -144,4 +144,13 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
             throw new WuShenException(20001,"删除失败");
         }
     }
+
+    @Override
+    public List<EduCourse> selectHotCourses() {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        wrapper.orderByDesc("view_count");
+        wrapper.last("limit 8");
+        List<EduCourse> courseList = baseMapper.selectList(wrapper);
+        return courseList;
+    }
 }

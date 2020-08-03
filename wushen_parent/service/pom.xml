@@ -18,6 +18,7 @@
         <module>service_edu</module>
         <module>service_oss</module>
         <module>service_vod</module>
+        <module>service_cms</module>
     </modules>
     <!--有具体依赖则使用无则使用父依赖-->
     <dependencies>
