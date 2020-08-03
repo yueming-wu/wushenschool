@@ -1,6 +1,7 @@
 package com.wushen.eduservice.controller;
 
 
+import com.wushen.baseservice.exception.WuShenException;
 import com.wushen.commonutils.R;
 import com.wushen.eduservice.client.VodClient;
 import com.wushen.eduservice.entity.EduVideo;
@@ -9,6 +10,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 /**
@@ -27,7 +29,7 @@ public class EduVideoController {
     @Autowired
     private EduVideoService eduVideoService;
     @Autowired
-    private VodClient VodClient;
+    private VodClient vodClient;
     @ApiOperation(value = "添加小节",notes = "根据小节表单添加小节")
     @PostMapping("/addVideo")
     public R addVideo(@ApiParam(name = "eduVideo",value = "小节",required = true)
@@ -44,10 +46,13 @@ public class EduVideoController {
         /*根据视频对象获得指定的视频来源id*/
         String videoSourceId = eduVideo.getVideoSourceId();
         /*如果不为空则删除小结里面的视频*/
-        if (videoSourceId != null) {
-            eduVideoService.removeById(videoSourceId);
+        if (!StringUtils.isEmpty(videoSourceId)) {
+            R result = vodClient.deleteVideoByVideoId(videoSourceId);
+            if(result.getCode()==20001){
+                throw new WuShenException(20001,"熔断器执行了");
+            }
         }
-        VodClient.deleteVideoByVideoId(id);
+        //删除小节
         eduVideoService.removeById(id);
         return R.ok();
     }
