@@ -22,7 +22,7 @@ import java.util.List;
  * @author wushenjava
  * @since 2020-08-01
  */
-@Api(tags = "学科管理")
+@Api(tags = "前端学科管理")
 @RestController
 @RequestMapping("/eduservice/subject")
 @CrossOrigin

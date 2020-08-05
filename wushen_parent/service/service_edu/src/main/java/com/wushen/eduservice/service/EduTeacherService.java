@@ -1,9 +1,11 @@
 package com.wushen.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wushen.eduservice.entity.EduTeacher;
 import com.baomidou.mybatisplus.extension.service.IService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * <p>
@@ -16,4 +18,6 @@ import java.util.List;
 public interface EduTeacherService extends IService<EduTeacher> {
 
     List<EduTeacher> selectFamousTeacher();
+
+    Map<String, Object> getTeacherListShowByPage(Page<EduTeacher> teacherPage);
 }

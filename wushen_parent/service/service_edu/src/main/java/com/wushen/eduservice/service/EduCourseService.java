@@ -1,7 +1,10 @@
 package com.wushen.eduservice.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wushen.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.wushen.eduservice.entity.frontvo.FrontCourseQueryVO;
+import com.wushen.eduservice.entity.frontvo.FrontCourseWebVo;
 import com.wushen.eduservice.entity.query.CourseInfoVO;
 import com.wushen.eduservice.entity.query.CoursePublishVo;
 import com.wushen.eduservice.entity.query.CourseQueryVO;
@@ -32,4 +35,8 @@ public interface EduCourseService extends IService<EduCourse> {
     void deleteCourseInfosByCourseId(String courseId);
 
     List<EduCourse> selectHotCourses();
+
+    Map<String, Object> getCourseList(Page<EduCourse> coursePage, FrontCourseQueryVO frontCourseQueryVO);
+
+    FrontCourseWebVo selectInfoWebById(String courseId);
 }

@@ -2,6 +2,7 @@ package com.wushen.eduservice.mapper;
 
 import com.wushen.eduservice.entity.EduCourse;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.wushen.eduservice.entity.frontvo.FrontCourseWebVo;
 import com.wushen.eduservice.entity.query.CoursePublishVo;
 
 /**
@@ -14,4 +15,6 @@ import com.wushen.eduservice.entity.query.CoursePublishVo;
  */
 public interface EduCourseMapper extends BaseMapper<EduCourse> {
     CoursePublishVo getCourseInfoById(String courseId);
+
+    FrontCourseWebVo selectInfoWebById(String courseId);
 }

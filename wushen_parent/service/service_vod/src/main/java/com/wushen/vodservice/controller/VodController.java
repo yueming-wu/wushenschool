@@ -16,7 +16,7 @@ import java.util.List;
  @author wushen
  @create 2020-07-22 9:44
  */
-@Api(value = "视频点播",tags = "视频管理")
+@Api(value = "视频点播",tags = "后端视频管理")
 @RestController
 @RequestMapping("/eduvod/video")
 @CrossOrigin

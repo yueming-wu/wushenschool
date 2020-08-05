@@ -5,6 +5,8 @@ import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.wushen.baseservice.exception.WuShenException;
 import com.wushen.eduservice.entity.EduCourse;
 import com.wushen.eduservice.entity.EduCourseDescription;
+import com.wushen.eduservice.entity.frontvo.FrontCourseQueryVO;
+import com.wushen.eduservice.entity.frontvo.FrontCourseWebVo;
 import com.wushen.eduservice.entity.query.CourseInfoVO;
 import com.wushen.eduservice.entity.query.CoursePublishVo;
 import com.wushen.eduservice.entity.query.CourseQueryVO;
@@ -152,5 +154,49 @@ public class EduCourseServiceImpl extends ServiceImpl<EduCourseMapper, EduCourse
         wrapper.last("limit 8");
         List<EduCourse> courseList = baseMapper.selectList(wrapper);
         return courseList;
+    }
+
+    @Override
+    public Map<String, Object> getCourseList(Page<EduCourse> pageParam, FrontCourseQueryVO frontCourseQueryVO) {
+        QueryWrapper<EduCourse> wrapper = new QueryWrapper<>();
+        if (frontCourseQueryVO != null) {
+            if (!StringUtils.isEmpty(frontCourseQueryVO.getSubjectParentId())) {
+                wrapper.eq("subject_parent_id", frontCourseQueryVO.getSubjectParentId());
+            }
+            if (!StringUtils.isEmpty(frontCourseQueryVO.getSubjectId())) {
+                wrapper.eq("subject_id", frontCourseQueryVO.getSubjectId());
+            }
+            if (!StringUtils.isEmpty(frontCourseQueryVO.getBuyCountSort())) {
+                wrapper.orderByDesc("buy_count");
+            }
+            if (!StringUtils.isEmpty(frontCourseQueryVO.getGmtCreateSort())) {
+                wrapper.orderByDesc("gmt_create");
+            }
+            if (!StringUtils.isEmpty(frontCourseQueryVO.getPriceSort())) {
+                wrapper.orderByDesc("price");
+            }
+        }
+        baseMapper.selectPage(pageParam,wrapper);
+        List<EduCourse> records = pageParam.getRecords();
+        long current = pageParam.getCurrent();
+        long pages = pageParam.getPages();
+        long size = pageParam.getSize();
+        long total = pageParam.getTotal();
+        boolean hasNext = pageParam.hasNext();
+        boolean hasPrevious = pageParam.hasPrevious();
+        Map<String, Object> map = new HashMap(16);
+        map.put("items", records);
+        map.put("current", current);
+        map.put("pages", pages);
+        map.put("size", size);
+        map.put("total", total);
+        map.put("hasNext", hasNext);
+        map.put("hasPrevious", hasPrevious);
+        return map;
+    }
+
+    @Override
+    public FrontCourseWebVo selectInfoWebById(String courseId) {
+        return baseMapper.selectInfoWebById(courseId);
     }
 }

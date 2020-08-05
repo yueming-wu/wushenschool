@@ -21,7 +21,7 @@ import java.util.List;
  * @author wushenjava
  * @since 2020-08-01
  */
-@Api(value = "章节",tags = "章节管理")
+@Api(value = "章节",tags = "后端章节管理")
 @RestController
 @RequestMapping("/eduservice/chapter")
 @CrossOrigin

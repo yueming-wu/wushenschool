@@ -23,7 +23,7 @@ import java.util.Map;
  * @author wushenjava
  * @since 2020-08-01
  */
-@Api(tags = "课程管理")
+@Api(tags = "后台课程管理")
 @RestController
 @RequestMapping("/eduservice/course")
 @CrossOrigin
