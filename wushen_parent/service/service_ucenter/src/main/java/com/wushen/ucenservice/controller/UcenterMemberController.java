@@ -53,6 +53,13 @@ public class UcenterMemberController {
         log.info(member.toString());
         return R.ok().data("member",member);
     }
+    @ApiOperation(value = "统计注册",notes = "根据每一天统计的注册人数生成图表")
+    @GetMapping("/countregister/{day}")
+    public R registerCount(@ApiParam(name = "day",value = "时间天",required = true)
+            @PathVariable String day){
+        Integer count = ucenterMemberService.countRegisterByDay(day);
+        return R.ok().data("countRegister", count);
+    }
 
 }
 

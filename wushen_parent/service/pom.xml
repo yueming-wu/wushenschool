@@ -21,6 +21,8 @@
         <module>service_cms</module>
         <module>service_msm</module>
         <module>service_ucenter</module>
+        <module>service_statistics</module>
+        <module>service_acl</module>
     </modules>
     <!--有具体依赖则使用无则使用父依赖-->
     <dependencies>

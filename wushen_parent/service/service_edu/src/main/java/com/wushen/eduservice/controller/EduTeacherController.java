@@ -29,7 +29,8 @@ import java.util.List;
 @Api(value = "讲师",tags = "后台讲师管理")
 @RestController
 @RequestMapping("/eduservice/teacher")
-@CrossOrigin
+//已开启gateway的跨域此处不需要了切记
+//@CrossOrigin
 @Slf4j
 public class EduTeacherController {
     @Autowired

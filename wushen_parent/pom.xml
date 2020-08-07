@@ -5,6 +5,8 @@
     <modules>
         <module>service</module>
         <module>common</module>
+        <module>canal_client</module>
+        <module>infrastructure</module>
     </modules>
     <!--标注父SpringBoot项目版本为2.2.1RELEASE-->
     <parent>
