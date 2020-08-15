@@ -18,10 +18,7 @@ public class IndexController {
 
     @Autowired
     private IndexService indexService;
-
-    /**
-     * 根据token获取用户信息
-     */
+    @ApiOperation(value = "获取用户",notes = "根据token获取用户信息")
     @GetMapping("info")
     public R info(){
         //获取当前登录用户用户名
@@ -31,9 +28,10 @@ public class IndexController {
     }
 
     /**
-     * 获取菜单
+     *
      * @return
      */
+    @ApiOperation(value = "获取菜单",notes = "根据用户名获取菜单")
     @GetMapping("menu")
     public R getMenu(){
         //获取当前登录用户用户名
@@ -41,7 +39,7 @@ public class IndexController {
         List<JSONObject> permissionList = indexService.getMenu(username);
         return R.ok().data("permissionList", permissionList);
     }
-
+    @ApiOperation(value = "登出",notes = "用户退出应用")
     @PostMapping("logout")
     public R logout(){
         return R.ok();

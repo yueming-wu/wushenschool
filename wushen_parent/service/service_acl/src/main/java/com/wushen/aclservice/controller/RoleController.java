@@ -31,7 +31,7 @@ public class RoleController {
     @Autowired
     private RoleService roleService;
 
-    @ApiOperation(value = "获取角色分页列表")
+    @ApiOperation(value = "角色列表",notes = "分页显示角色列表")
     @GetMapping("{page}/{limit}")
     public R index(
             @ApiParam(name = "page", value = "当前页码", required = true)
@@ -49,35 +49,35 @@ public class RoleController {
         return R.ok().data("items", pageParam.getRecords()).data("total", pageParam.getTotal());
     }
 
-    @ApiOperation(value = "获取角色")
+    @ApiOperation(value = "获取角色",notes = "根据id获取角色信息")
     @GetMapping("get/{id}")
     public R get(@PathVariable String id) {
         Role role = roleService.getById(id);
         return R.ok().data("item", role);
     }
 
-    @ApiOperation(value = "新增角色")
+    @ApiOperation(value = "新增角色",notes ="添加角色信息")
     @PostMapping("save")
     public R save(@RequestBody Role role) {
         roleService.save(role);
         return R.ok();
     }
 
-    @ApiOperation(value = "修改角色")
+    @ApiOperation(value = "修改角色",notes = "修改角色信息")
     @PutMapping("update")
     public R updateById(@RequestBody Role role) {
         roleService.updateById(role);
         return R.ok();
     }
 
-    @ApiOperation(value = "删除角色")
+    @ApiOperation(value = "删除角色",notes = "删除角色信息")
     @DeleteMapping("remove/{id}")
     public R remove(@PathVariable String id) {
         roleService.removeById(id);
         return R.ok();
     }
 
-    @ApiOperation(value = "根据id列表删除角色")
+    @ApiOperation(value = "批量删除",notes = "根据id列表批量删除角色信息")
     @DeleteMapping("batchRemove")
     public R batchRemove(@RequestBody List<String> idList) {
         roleService.removeByIds(idList);

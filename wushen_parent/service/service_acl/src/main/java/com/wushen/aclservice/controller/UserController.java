@@ -38,7 +38,7 @@ public class UserController {
     @Autowired
     private RoleService roleService;
 
-    @ApiOperation(value = "获取管理用户分页列表")
+    @ApiOperation(value = "用户列表",notes = "带条件分页显示用户列表")
     @GetMapping("{page}/{limit}")
     public R index(
             @ApiParam(name = "page", value = "当前页码", required = true)
@@ -59,7 +59,7 @@ public class UserController {
         return R.ok().data("items", pageModel.getRecords()).data("total", pageModel.getTotal());
     }
 
-    @ApiOperation(value = "新增管理用户")
+    @ApiOperation(value = "添加用户",notes = "新增管理用户")
     @PostMapping("save")
     public R save(@RequestBody User user) {
         user.setPassword(MD5.encrypt(user.getPassword()));
@@ -67,35 +67,35 @@ public class UserController {
         return R.ok();
     }
 
-    @ApiOperation(value = "修改管理用户")
+    @ApiOperation(value = "修改用户",notes = "修改管理用户")
     @PutMapping("update")
     public R updateById(@RequestBody User user) {
         userService.updateById(user);
         return R.ok();
     }
 
-    @ApiOperation(value = "删除管理用户")
+    @ApiOperation(value = "删除用户",notes = "删除管理用户")
     @DeleteMapping("remove/{id}")
     public R remove(@PathVariable String id) {
         userService.removeById(id);
         return R.ok();
     }
 
-    @ApiOperation(value = "根据id列表删除管理用户")
+    @ApiOperation(value = "批量删除",notes = "根据id列表批量删除管理用户")
     @DeleteMapping("batchRemove")
     public R batchRemove(@RequestBody List<String> idList) {
         userService.removeByIds(idList);
         return R.ok();
     }
 
-    @ApiOperation(value = "根据用户获取角色数据")
+    @ApiOperation(value = "获取角色",notes = "根据用户id获取角色数据")
     @GetMapping("/toAssign/{userId}")
     public R toAssign(@PathVariable String userId) {
         Map<String, Object> roleMap = roleService.findRoleByUserId(userId);
         return R.ok().data(roleMap);
     }
 
-    @ApiOperation(value = "根据用户分配角色")
+    @ApiOperation(value = "分配角色",notes = "根据用户id分配角色")
     @PostMapping("/doAssign")
     public R doAssign(@RequestParam String userId,@RequestParam String[] roleId) {
         roleService.saveUserRoleRealtionShip(userId,roleId);
